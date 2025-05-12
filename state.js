@@ -22,7 +22,6 @@ function gameStarted() {
 
     // set initial direction
     currentDirection = directions[getRandomNumber(0, 3)];
-    console.log(currentDirection)
     // change state to moving
     moving();
 }
@@ -69,7 +68,7 @@ function moving() {
             clearInterval(intervalId);
             init();
         }
-    }, 250);
+    }, 300);
 }
 
 function die () {
