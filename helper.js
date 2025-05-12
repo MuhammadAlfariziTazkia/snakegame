@@ -1,8 +1,8 @@
 function generateTable () {
     let rows = "";
-    for (let vIndex = 0 ; vIndex < 16 ; vIndex ++) {
+    for (let vIndex = MIN_COORD ; vIndex < MAX_COORD + 1 ; vIndex ++) {
         rows += "<tr>";
-        for (let hIndex = 0 ; hIndex < 16 ; hIndex ++) {
+        for (let hIndex = MIN_COORD ; hIndex < MAX_COORD + 1 ; hIndex ++) {
             rows += `<td id="${vIndex}-${hIndex}"></td>`;
         }
         rows += "</tr>";
@@ -18,11 +18,11 @@ function respawn(type, vIndex, hIndex) {
     const coord = {vIndex, hIndex};
     const cellId = `${vIndex}-${hIndex}`;
     const cell = $(`#${cellId}`);
-    adjustCell(type, cell);
+    adjustCellDisplay(type, cell);
     return coord;
 }
 
-function adjustCell(type, cell) {
+function adjustCellDisplay(type, cell) {
     cell.removeClass();
     switch (type) {
         case "SNAKE": 
@@ -47,17 +47,6 @@ function respawnFood () {
     return respawn("FOOD", vIndex, hIndex);
 }
 
-function isClashWithSnakeBody (snakeHead) {
-    for (let index = 0; index < snakeBody.length-1; index ++) {
-        if (snakeBody.length <= 1) return false;
-        if (
-            snakeBody[index].vIndex == snakeHead.vIndex && 
-            snakeBody[index].hIndex == snakeHead.hIndex
-        ) return true;
-    }
-    return false;
-}
-
 function isFoundFood(snakeHead, food) {
     return snakeHead.vIndex == food.vIndex 
         && snakeHead.hIndex == food.hIndex;
@@ -70,12 +59,6 @@ function getSnakePartCord(part) {
     return {vIndex, hIndex};
 }
 
-function isDie () {
-    const snakeHead = getSnakePartCord("HEAD");
-    return isClashWithSnakeBody(snakeHead)
-        || isSnakeHeadHitBorder(snakeHead);
-}
-
 function reset() {
     snakeBody = [];
     currentDirection = "";
@@ -83,9 +66,20 @@ function reset() {
     score = 0;
 }
 
-function isSnakeHeadHitBorder (snakeHead) {
-    return snakeHead.vIndex > 15
-        || snakeHead.vIndex < 0
-        || snakeHead.hIndex > 15
-        || snakeHead.hIndex < 0;
+function calculateMovement(head) {
+    switch (currentDirection) {
+        case "UP":
+            head.vIndex--;
+            break;
+        case "BOTTOM":
+            head.vIndex++;
+            break;
+        case "RIGHT":
+            head.hIndex++;
+            break;
+        case "LEFT":
+            head.hIndex--;
+            break;
+    }
+    return head;
 }

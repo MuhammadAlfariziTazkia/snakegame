@@ -21,7 +21,8 @@ function gameStarted() {
     foodCoord = respawnFood();
 
     // set initial direction
-    currentDirection = directions[getRandomNumber(0, 3)];
+    currentDirection = DIRECTIONS[getRandomNumber(0, 3)];
+
     // change state to moving
     moving();
 }
@@ -30,22 +31,10 @@ function moving() {
     const intervalId = setInterval(() => {
         // expand head
         const head = getSnakePartCord("HEAD");
-        let vIndex = head.vIndex;
-        let hIndex = head.hIndex;
-        switch (currentDirection) {
-            case "UP":
-                vIndex--;
-                break;
-            case "BOTTOM":
-                vIndex++;
-                break;
-            case "RIGHT":
-                hIndex++;
-                break;
-            case "LEFT":
-                hIndex--;
-                break;
-        }
+        const nextMovement = calculateMovement(head);
+        const vIndex = nextMovement.vIndex;
+        const hIndex = nextMovement.hIndex;
+
         respawn("SNAKE", vIndex, hIndex);
         snakeBody.push({vIndex, hIndex});
 
@@ -68,7 +57,7 @@ function moving() {
             clearInterval(intervalId);
             init();
         }
-    }, 300);
+    }, SPEED);
 }
 
 function die () {
