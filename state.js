@@ -11,7 +11,7 @@ function init() {
 
 function gameStarted() {
     // hide play button
-    $("#playButton").addClass("d-none");
+    $("#play-button").addClass("d-none");
     $("#score").text("Score: 0");
     
     // respawn snake
@@ -65,7 +65,7 @@ function moving() {
 
         // die
         if (isDie()) {
-            $("#playButton").removeClass("d-none");
+            $("#play-button").removeClass("d-none");
             clearInterval(intervalId);
             init();
         }

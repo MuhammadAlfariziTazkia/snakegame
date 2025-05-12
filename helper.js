@@ -17,8 +17,24 @@ function getRandomNumber(min, max) {
 function respawn(type, vIndex, hIndex) {
     const coord = {vIndex, hIndex};
     const cellId = `${vIndex}-${hIndex}`;
-    $(`#${cellId}`).css("background", getCellColor(type));
+    const cell = $(`#${cellId}`);
+    adjustCell(type, cell);
     return coord;
+}
+
+function adjustCell(type, cell) {
+    cell.removeClass();
+    switch (type) {
+        case "SNAKE": 
+            cell.addClass('snake-body');
+            break;
+        case "FOOD": 
+            cell.addClass('food');
+            break;
+        case "CELL": 
+            cell.addClass('cell');
+            break;
+    }
 }
 
 function respawnFood () {
@@ -40,14 +56,6 @@ function isClashWithSnakeBody (snakeHead) {
         ) return true;
     }
     return false;
-}
-
-function getCellColor (type) {
-    switch (type) {
-        case "SNAKE": return snakeColor;
-        case "FOOD": return foodColor;
-        case "CELL": return cellColor;
-    }
 }
 
 function isFoundFood(snakeHead, food) {
