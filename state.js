@@ -22,7 +22,7 @@ function gameStarted() {
 
     // set initial direction
     currentDirection = directions[getRandomNumber(0, 3)];
-    
+    console.log(currentDirection)
     // change state to moving
     moving();
 }
@@ -58,17 +58,17 @@ function moving() {
             return;
         }
 
+        // remove tail
+        const tail = getSnakePartCord("TAIL");
+        respawn("CELL", tail.vIndex, tail.hIndex);
+        snakeBody.shift();
+
         // die
         if (isDie()) {
             $("#playButton").removeClass("d-none");
             clearInterval(intervalId);
             init();
         }
-
-        // remove tail
-        const tail = getSnakePartCord("TAIL");
-        respawn("CELL", tail.vIndex, tail.hIndex);
-        snakeBody.shift();
     }, 250);
 }
 

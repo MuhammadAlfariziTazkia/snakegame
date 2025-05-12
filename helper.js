@@ -31,9 +31,13 @@ function respawnFood () {
     return respawn("FOOD", vIndex, hIndex);
 }
 
-function isClashWithSnakeBody (vIndex, hIndex) {
-    for (let index = 0; index < snakeBody.length; index ++) {
-        if (snakeBody[index].vIndex == vIndex && snakeBody[index].hIndex == hIndex) return true;
+function isClashWithSnakeBody (snakeHead) {
+    for (let index = 0; index < snakeBody.length-1; index ++) {
+        if (snakeBody.length <= 1) return false;
+        if (
+            snakeBody[index].vIndex == snakeHead.vIndex && 
+            snakeBody[index].hIndex == snakeHead.hIndex
+        ) return true;
     }
     return false;
 }
