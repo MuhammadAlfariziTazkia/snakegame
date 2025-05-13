@@ -40,10 +40,12 @@ function adjustCellDisplay(type, cell) {
 function respawnFood () {
     let vIndex = getRandomNumber(0, 15);
     let hIndex = getRandomNumber(0, 15);
-    while (isClashWithSnakeBody(vIndex, hIndex)) {
+
+    while (isClashWithSnakeBody({vIndex, hIndex})) {
         vIndex = getRandomNumber(0, 15);
         hIndex = getRandomNumber(0, 15);
     }
+
     return respawn("FOOD", vIndex, hIndex);
 }
 

@@ -4,4 +4,4 @@ const CELL_CLASS = "cell";
 const FOOD_CLASS = "food";
 const MAX_COORD = 15
 const MIN_COORD = 0;
-const SPEED = 150;
+const SPEED = 125;
