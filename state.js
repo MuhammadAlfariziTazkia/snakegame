@@ -10,6 +10,8 @@ function init() {
 }
 
 function gameStarted() {
+    init();
+    
     // hide play button
     $("#play-button").addClass("d-none");
     $("#score").text("Score: 0");
@@ -55,7 +57,6 @@ function moving() {
         if (isDie()) {
             $("#play-button").removeClass("d-none");
             clearInterval(intervalId);
-            init();
         }
     }, SPEED);
 }

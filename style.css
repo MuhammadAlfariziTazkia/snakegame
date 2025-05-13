@@ -72,6 +72,13 @@
     text-shadow: 0 0 5px #9d4eff;
   }
 
+  .lose-description {
+    margin-top: 16px;
+    color: #d75f03;
+    text-align: center;
+    text-shadow: 0 0 5px #ffff00;
+  }
+
   /* Styling untuk sel tabel */
   #arena td {
     width: 30px;

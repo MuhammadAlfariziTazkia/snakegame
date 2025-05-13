@@ -1,5 +1,16 @@
 function isDie () {
     const snakeHead = getSnakePartCord("HEAD");
+    if (isClashWithSnakeBody(snakeHead)) {
+        $("#lose-description").text("Ouch! You just bit yourself!");
+        return true;
+    }
+
+    if (isSnakeHeadHitBorder(snakeHead)) {
+        $("#lose-description").text("Boom! You hit the wall!");
+        return true;
+    }
+
+    return false;
     return isClashWithSnakeBody(snakeHead)
         || isSnakeHeadHitBorder(snakeHead);
 }

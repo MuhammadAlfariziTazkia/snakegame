@@ -12,7 +12,8 @@
     <div class="container d-flex justify-content-center align-items-center game-container">
         <div id="mainDiv" class="card game-panel">
             <h1 class="mb-3 game-title">Snake Game</h1>
-            <h5 id="score" class="mb-3 score-display">Score: 0</h3>
+            <h3 id="score" class="mb-3 score-display">Score: 0</h3>
+            <h5 id="lose-description" class="lose-description"></h5>
             <table id="arena" border="1"></table>
             <button id="play-button" class="btn btn-dark mb-3 mt-2" onclick="gameStarted()">Play Game</button>
             <a href="https://saweria.co/farizproject" class="developer-credit" target="blank">Support this project (Saweria)</a>
@@ -25,8 +26,5 @@
     <script src="helper.js"></script>
     <script src="state.js"></script>
     <script src="controller.js"></script>
-    <script>
-        init();
-    </script>
 </body>
 </html>

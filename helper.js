@@ -66,6 +66,7 @@ function reset() {
     currentDirection = "";
     foodCoord = {};
     score = 0;
+    $("#lose-description").text("");
 }
 
 function calculateMovement(head) {
